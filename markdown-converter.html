@@ -1,20 +1,43 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="css/styles.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-<div class="row">
-  <div class="column">
-	<form>
-		<label for="source">Markdown</label><br>
-		<textarea id="source" name="source" rows="20" cols="50"></textarea><br><br>
-		<label for="destination">HTML</label><br>
-		<textarea id="destination" name="destination" rows="20" cols="50"></textarea><br><br>
-	</form>
-  </div>
-  <div class="column">
-	<div id="test">
+<div class="container">
+	<div class="row">
+		<h1> Markdown to HTML converter</h1>
+		<p class="lead">
+		  Use the input on the left side, check the generated markup below and the applied markup on the right.
+		</p>
+
+
 	</div>
-  </div>
+	<div class="row">
+	  <div class="col mb-3">
+		<div class="card">
+		  <div class="card-header">
+		    Input
+		  </div>
+		  <div class="card-body">
+			<form>
+				<label for="source" class="form-label">Markdown</label>
+				<textarea id="source" name="source" rows="15" cols="50" class="form-control form-control-sm"></textarea>
+				<label for="destination" class="form-label">HTML</label>
+				<textarea id="destination" name="destination" rows="10" cols="50" class="form-control form-control-sm" readonly></textarea>
+			</form>
+		  </div>
+		</div>
+	  </div>
+	  <div class="col mb-3">
+		<div class="card">
+		  <div class="card-header">
+		    Markup preview
+		  </div>
+		  <div class="card-body">
+			<div id="markup">
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
 </div>
-
-
 <script src="js/form.js"></script>

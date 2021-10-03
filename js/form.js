@@ -4,7 +4,7 @@
 $('#source').change(function() {
 	let html = convert($('#source').val());
 	$('#destination').val(html);
-	$('#test').html(html);
+	$('#markup').html(html);
 });
 
 // Main function.

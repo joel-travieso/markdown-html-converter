@@ -1,10 +1,4 @@
-.row {
-  display: flex;
-}
 
-.column {
-  flex: 50%;
-}
 
 textarea {
 	width: 90%;
@@ -13,4 +7,12 @@ textarea {
 form {
     position: sticky;
     top: 0px;
+}
+
+.container {
+    padding-top: 10px;
+}
+
+.card {
+    height: 100%;
 }
