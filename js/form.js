@@ -1,23 +1,35 @@
 
 
+// Form functionality
 $('#source').change(function() {
 	let html = convert($('#source').val());
 	$('#destination').val(html);
 	$('#test').html(html);
 });
 
-
+// Main function.
 var convert = function(text) {
 	let parts = text.split(/\r?\n/);
 	let result = '';
+	let current = '';
 	for (let i = 0; i < parts.length; i++) {
-		if (parts[i].length > 0) {
-			result += transform(parts[i], [wrap, findLinksWithoutNesting]);
+		if ((parts[i].length == 0 || parts[i][0] == '#') && current.length > 0) {
+			result += transform(current, [wrapParagraph, findLinksWithoutNesting]);
+			current = '';
+		}
+		if (parts[i][0] == '#') {
+			result += transform(parts[i], [wrapHeader, findLinksWithoutNesting]);
+		}
+		else if (parts[i].length > 0) {
+			current = current.length == 0 ? parts[i] : current + ` ${parts[i]}`;
 		}
 	}
 	return result;
 }
 
+/*
+** Conversion utility functions
+*/
 var transform = function(line, callbacks) {
 	for (let i = 0; i < callbacks.length; i++) {
 		line = callbacks[i](line);
@@ -25,20 +37,20 @@ var transform = function(line, callbacks) {
 	return line;
 }
 
-var wrap = function(line) {
+var wrapHeader = function(line) {
 	let headingSize = 0;
-	while (line[headingSize] == '#' && headingSize <= 6) {
+	while (line[headingSize] == '#' && headingSize < 6) {
 		headingSize++;
 	}
 	let content = line.substring(headingSize);
-	return headingSize ? `<h${headingSize}>${content}</h${headingSize}>` : `<p>${line}</p>`;
+	return `<h${headingSize}>${content}</h${headingSize}>`;
 }
 
-var wrapContiguous = function(line) {
-	// TODO
+var wrapParagraph = function(line) {
+	return `<p>${line}</p>`;
 }
 
-var findLinks = function (line) {
+var findLinksRegex = function (line) {
 	return line.replace(/\[(.+)\]\((.+)\)/, '<a href="$2">$1</a>');
 }
 
