@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+textarea {
+	width: 90%;
+}
+
+form {
+    position: sticky;
+    top: 0px;
+}
