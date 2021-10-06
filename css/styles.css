@@ -11,3 +11,6 @@ form {
 .card {
     height: 100%;
 }
+#repo {
+	font-size: 20;
+}
